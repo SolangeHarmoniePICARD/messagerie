@@ -24,13 +24,13 @@
                <form action="function.php" method="post">
                  <p>
                    <label for="pseudo">Pseudo : </label>
-                   <input style="width: 100%;" type="text" name="pseudo" placeholder="Votre pseudo." required>
+                   <input style="width: 100%;" type="text" name="pseudo" placeholder="Votre pseudo."  value=<?php echo $_COOKIE['pseudo']; ?>>
                   </p>
                   <p>
                     <label for="message">Message : </label>
                     <textarea style="width: 100%;" type="text" name="message" rows="4"></textarea>
                   </p>
-                <input style="width: 100%;" type="submit" name="envoyer" class="btn btn-outline-primary btn-lg btn-block" value="Envoyer" required>
+                <input style="width: 100%;" type="submit" name="envoyer" class="btn btn-outline-primary btn-lg btn-block" value="Envoyer">
               </form>
             </div>
 
