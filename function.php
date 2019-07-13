@@ -27,8 +27,10 @@ if (!empty($_POST['pseudo']) AND !empty($_POST['message'])) {
       //Je vérifie si l'insertion à bien fonctionnée
       if($response->rowCount() > 0){
         $success[] = 'Ton message a bien été enregistré !';
+        header('Location: index.php');
       } else {
         $errors[] = 'Erreur veuillez retenter plus tard';
+        header('Location: index.php');
       }
 
     }
@@ -48,6 +50,6 @@ if (!empty($_POST['pseudo']) AND !empty($_POST['message'])) {
   }
 }else {
   echo "Veuillez remplir vos champs !";
+  header('Location: index.php');
 }
-header('Location: index.php');
 ?>
