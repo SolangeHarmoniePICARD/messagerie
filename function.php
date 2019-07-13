@@ -1,4 +1,7 @@
 <?php
+
+include("connexion.php");
+
 //je vérifie si mes champs sont vides
 if (!empty($_POST['pseudo']) AND !empty($_POST['message'])) {
 
@@ -12,24 +15,16 @@ if (!empty($_POST['pseudo']) AND !empty($_POST['message'])) {
     //Je vérifie qu'il n'y a pas d'errers, puis je connecte à la bdd
     if (!isset($errors)) {
 
-      //Je me connecte à la base de donnée
-      try {
-        $bdd = new PDO('mysql:host=localhost;dbname=chat;charset=utf8', '*****', '*****', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
-      } catch (\Exception $e) {
-        die('Erreur : '.$e->getMessage());
-      }
-
       //Insertion des informations dans la base de donnée avec une requet préparée pour se protéger des injections SQL
       $response = $bdd->prepare('INSERT INTO mini_chat(pseudo, message, date_creation) VALUES(?, ?, NOW())');
       $response->execute(array($pseudo,$message));
 
       //Je vérifie si l'insertion à bien fonctionnée
       if($response->rowCount() > 0){
-        $success[] = 'Ton message a bien été enregistré !';
+        $success[] = 'Votre message a bien été enregistré !';
         header('Location: index.php');
       } else {
-        $errors[] = 'Erreur veuillez retenter plus tard';
+        $errors[] = 'Erreur veuillez ré-essayer plus tard';
         header('Location: index.php');
       }
 

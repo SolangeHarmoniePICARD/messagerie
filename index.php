@@ -1,3 +1,4 @@
+<?php include("connexion.php"); ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -38,23 +39,16 @@
             </div>
             <div class="card-body">
               <?php
-              // Connexion à la base de données
-              try
-              {
-              	$bdd = new PDO('mysql:host=localhost;dbname=chat;charset=utf8', '*****', '*****', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-              } catch(Exception $e) {
-                      die('Erreur : '.$e->getMessage());
-              }
 
-              // Récupération des 10 derniers messages
-              $reponse = $bdd->query('SELECT pseudo, message, date_creation FROM mini_chat ORDER BY ID DESC LIMIT 0, 50');
+                // Récupération des 10 derniers messages
+                $reponse = $bdd->query('SELECT pseudo, message, date_creation FROM mini_chat ORDER BY ID DESC LIMIT 0, 50');
 
-              // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
-              while ($donnees = $reponse->fetch()){
-              	echo '<p>' . htmlspecialchars(date("j/n/Y G:i", strtotime($donnees["date_creation"]))) . ' - <strong> ' . htmlspecialchars($donnees['pseudo']) . '</strong> : <br>' . htmlspecialchars($donnees['message']) . '</p>';
-              }
+                // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
+                while ($donnees = $reponse->fetch()){
+                	echo '<p>' . htmlspecialchars(date("j/n/Y G:i", strtotime($donnees["date_creation"]))) . ' - <strong> ' . htmlspecialchars($donnees['pseudo']) . '</strong> : <br>' . htmlspecialchars($donnees['message']) . '</p>';
+                }
 
-              $reponse->closeCursor();
+                $reponse->closeCursor();
 
               ?>
             </div>
