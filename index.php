@@ -24,7 +24,7 @@
                <form action="function.php" method="post">
                  <p>
                    <label for="pseudo">Pseudo : </label>
-                   <input style="width: 100%;" type="text" name="pseudo" placeholder="Votre pseudo."  value=<?php echo $_COOKIE['pseudo']; ?>>
+                   <input style="width: 100%;" type="text" name="pseudo" placeholder="Votre pseudo."  value=<?php if (isset($_COOKIE['pseudo'])){ echo $_COOKIE['pseudo'}; ?>>
                   </p>
                   <p>
                     <label for="message">Message : </label>
